@@ -433,6 +433,7 @@ h2 {
 .slot-info, .appointment-info, .request-info {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 4px;
 }
 
@@ -453,13 +454,18 @@ h2 {
 }
 
 .status-badge {
-  display: inline-block;
-  padding: 4px 10px;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: fit-content;
+  align-self: flex-start;
+  padding: 3px 10px;
   border-radius: 9999px;
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .status-available {
@@ -606,6 +612,14 @@ h2 {
 
 /* ================= Mobile Responsiveness (Requirement R7) ================= */
 @media (max-width: 850px) {
+  body {
+    padding: 14px 10px;
+  }
+
+  .card {
+    padding: 20px 16px;
+  }
+
   .two-column-grid {
     grid-template-columns: 1fr;
   }
@@ -648,6 +662,25 @@ h2 {
   .patient-profile, .doctor-profile {
     flex-direction: column;
     align-items: flex-start;
+    gap: 14px;
+  }
+
+  .patient-name-wrapper {
+    width: 100%;
+  }
+
+  .text-input, .select-input {
+    width: 100%;
+    min-height: 42px;
+  }
+
+  .filter-group, .doctor-selector-wrapper {
+    width: 100%;
+  }
+
+  .team-member {
+    flex-wrap: wrap;
+    gap: 8px;
   }
 }
 

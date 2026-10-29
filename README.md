@@ -4,6 +4,8 @@ Advanced Software Engineering (2026 / 2027)
 Team Assignment / Software Engineering Workflow  
 Teaching Assistant: Eng. Ahmed Ehab
 
+> 🚀 **Live Demo (GitHub Pages):** [https://zzokm.github.io/Advanced-SWE-Lab-Task-2/](https://zzokm.github.io/Advanced-SWE-Lab-Task-2/)
+
 ## Team Information & Stage Assignment
 
 | Student ID | Full Name | Assigned Task | Branch | PR Link |
