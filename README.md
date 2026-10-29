@@ -7,10 +7,10 @@ Team Assignment / Software Engineering Workflow
 
 | Student ID | Full Name | Assigned Task | Branch | PR Link |
 |---|---|---|---|---|
-| 20242447 | Yehia Hassan Abdelmoaty | Use Cases & Requirements | `stage-1-use-cases` | Pending |
-| 20240529 | Mohamed Motaz Maher | Class Diagram | `stage-2-class-diagram` | Pending |
-| 20240529 | Mohamed Motaz Maher | Sequence Diagram | `stage-3-sequence-diagram` | Pending |
-| 20242447 | Yehia Hassan Abdelmoaty | Implementation | `stage-4-implementation` | Pending |
+| 20242447 | Yehia Hassan Abdelmoaty | Use Cases & Requirements | [`stage-1-use-cases`](https://github.com/zzokm/Advanced-SWE-Lab-Task-2/tree/stage-1-use-cases) | [PR #1](https://github.com/zzokm/Advanced-SWE-Lab-Task-2/pull/1) |
+| 20240529 | Mohamed Motaz Maher | Class Diagram | [`Stage_2_Class_Diagram`](https://github.com/zzokm/Advanced-SWE-Lab-Task-2/tree/Stage_2_Class_Diagram) | [PR #4](https://github.com/zzokm/Advanced-SWE-Lab-Task-2/pull/4) |
+| 20240529 | Mohamed Motaz Maher | Sequence Diagram | [`Stage_3_Sequence_Diagram`](https://github.com/zzokm/Advanced-SWE-Lab-Task-2/tree/Stage_3_Sequence_Diagram) | [PR #5](https://github.com/zzokm/Advanced-SWE-Lab-Task-2/pull/5) |
+| 20242447 | Yehia Hassan Abdelmoaty | Implementation | [`Stage_4_Implementation`](https://github.com/zzokm/Advanced-SWE-Lab-Task-2/tree/Stage_4_Implementation) | [PR #6](https://github.com/zzokm/Advanced-SWE-Lab-Task-2/pull/6) |
 | N/A | N/A | Docker (team of 5 only) | N/A | N/A (Team of 2) |
 
 ---
