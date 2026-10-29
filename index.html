@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Appointment Booking System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header Section (Styled in Task 1 Flat Dark aesthetic) -->
+    <header class="card main-header">
+      <div class="header-content">
+        <span class="badge course-badge">Advanced Software Engineering Task 2</span>
+        <h1>Doctor Appointment Booking System</h1>
+        <p class="ta">Teaching Assistant: <span class="ta-name">Eng. Ahmed Ehab</span></p>
+      </div>
+
+      <div class="team-section">
+        <p class="section-label">Team Members & Assigned Tasks</p>
+        <ul class="team-list">
+          <li class="team-member">
+            <span class="name">Yehia Hassan Abdelmoaty</span>
+            <span class="task-tag">Stages 1 & 4 (Requirements & Web App)</span>
+            <span class="id">ID: 20242447</span>
+          </li>
+          <li class="team-member">
+            <span class="name">Mohamed Motaz Maher</span>
+            <span class="task-tag">Stages 2 & 3 (Class & Sequence Diagrams)</span>
+            <span class="id">ID: 20240529</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Navigation Bar -->
+      <nav class="nav-bar">
+        <div class="nav-tabs">
+          <button id="tab-patient" class="tab-btn active" onclick="app.switchView('patient')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Patient Portal
+          </button>
+          <button id="tab-doctor" class="tab-btn" onclick="app.switchView('doctor')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            Doctor Portal
+          </button>
+        </div>
+        <div class="nav-actions">
+          <button class="btn btn-secondary btn-sm" onclick="app.resetDemoData()" title="Reset all slots and appointments to initial demo state">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            Reset Demo Data
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- MAIN VIEWS -->
+    <main>
+      <!-- ================= PATIENT VIEW ================= -->
+      <section id="patient-view" class="view-section active">
+        <!-- Patient Status Card -->
+        <div class="card status-card">
+          <div class="patient-profile">
+            <div class="patient-name-wrapper">
+              <label for="patient-name-input" class="field-label">Patient Name:</label>
+              <input type="text" id="patient-name-input" class="text-input" placeholder="Enter patient name..." oninput="app.onPatientNameInput(this.value)">
+            </div>
+            <div class="quota-badge-wrapper">
+              <span id="quota-badge" class="quota-badge quota-ok">0 / 3 Upcoming</span>
+            </div>
+          </div>
+          <div id="quota-alert" class="alert alert-warning" style="display: none;">
+            <strong>Booking Quota Limit Reached:</strong> You already have 3 upcoming appointments. You cannot book more until existing appointments are concluded or cancelled.
+          </div>
+        </div>
+
+        <div class="two-column-grid">
+          <!-- Left Column: Available Doctor Slots -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2>Available Schedules</h2>
+                <p class="subtitle">Browse doctor availability and book time slots</p>
+              </div>
+              <div class="filter-group">
+                <label for="doctor-select" class="visually-hidden">Select Doctor</label>
+                <select id="doctor-select" class="select-input" onchange="app.onDoctorSelectChange()">
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+            </div>
+
+            <div id="available-slots-list" class="slots-container">
+              <!-- Available slots rendered here -->
+            </div>
+          </div>
+
+          <!-- Right Column: Patient's Appointments -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2>My Appointments</h2>
+                <p class="subtitle">Track your upcoming and historical bookings</p>
+              </div>
+            </div>
+
+            <div class="appointments-section">
+              <h3 class="section-title">Active Upcoming</h3>
+              <div id="patient-upcoming-list" class="appointments-list">
+                <!-- Upcoming list rendered here -->
+              </div>
+
+              <h3 class="section-title mt-4">History & Concluded</h3>
+              <div id="patient-history-list" class="appointments-list">
+                <!-- History list rendered here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= DOCTOR VIEW ================= -->
+      <section id="doctor-view" class="view-section">
+        <div class="card status-card">
+          <div class="doctor-profile">
+            <div>
+              <p class="subtitle">Doctor Schedule & Request Management</p>
+              <h2>Consultation Dashboard</h2>
+            </div>
+            <div class="doctor-selector-wrapper">
+              <label for="doctor-profile-select" class="field-label">Active Doctor Profile:</label>
+              <select id="doctor-profile-select" class="select-input" onchange="app.onDoctorProfileChange()">
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-4">
+          <div class="card-header">
+            <div>
+              <h2>Pending Appointment Requests</h2>
+              <p class="subtitle">Review patient booking requests to Accept or Decline</p>
+            </div>
+            <span id="pending-requests-count" class="id">0 Pending</span>
+          </div>
+
+          <div id="doctor-requests-list" class="requests-container">
+            <!-- Doctor pending requests rendered here -->
+          </div>
+        </div>
+
+        <div class="card mt-4">
+          <div class="card-header">
+            <div>
+              <h2>Confirmed Appointments Schedule</h2>
+              <p class="subtitle">Locked consultation time slots for this doctor</p>
+            </div>
+          </div>
+          <div id="doctor-confirmed-list" class="slots-container">
+            <!-- Confirmed slots rendered here -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Doctor Appointment Booking System &bull; Advanced Software Engineering Task 2</p>
+      <p class="footer-links">
+        <a href="https://github.com/zzokm/Advanced-SWE-Lab-Task-2" target="_blank" rel="noopener">GitHub Repository</a> &bull;
+        <a href="requirements.txt" target="_blank">Requirements (R1-R7)</a> &bull;
+        <a href="Class_Diagram.md" target="_blank">Class Diagram</a> &bull;
+        <a href="Sequence_Diagram.md" target="_blank">Sequence Diagram</a>
+      </p>
+    </footer>
+  </div>
+
+  <!-- Domain logic and Application scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
