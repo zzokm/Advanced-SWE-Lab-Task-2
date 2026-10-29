@@ -281,6 +281,7 @@ class BookingService {
     this.data.appointments.push({
       appointmentId: newAppt.appointmentId,
       patientId: newAppt.patientId,
+      patientName: this.data.currentPatient?.name || 'Patient',
       doctorId: newAppt.doctorId,
       slotId: newAppt.slotId,
       status: newAppt.status,
@@ -425,7 +426,18 @@ class AppController {
 
   init() {
     this.populateDoctorDropdowns();
+    const nameInput = document.getElementById('patient-name-input');
+    if (nameInput) {
+      nameInput.value = this.data.currentPatient?.name || 'Yehia Hassan';
+    }
     this.render();
+  }
+
+  onPatientNameInput(val) {
+    const trimmed = (val || '').trim();
+    this.data.currentPatient.name = trimmed || 'Patient';
+    StorageService.saveData(this.data);
+    this.renderDoctorPortal();
   }
 
   switchView(viewName) {
@@ -642,7 +654,7 @@ class AppController {
           const start = new Date(req.slot.startTime);
           const dateStr = start.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
           const timeStr = start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-          const patientName = this.data.currentPatient.name;
+          const patientName = req.patientName || this.data.currentPatient.name;
           const patientContact = this.data.currentPatient.phone;
 
           return `
@@ -682,7 +694,7 @@ class AppController {
           return `
             <div class="slot-item">
               <div class="slot-info">
-                <span class="slot-date">Patient: ${this.data.currentPatient.name}</span>
+                <span class="slot-date">Patient: ${item.patientName || this.data.currentPatient.name}</span>
                 <span class="slot-time">${dateStr} at ${timeStr}</span>
                 <div>
                   <span class="status-badge status-accepted">Confirmed (Booked)</span>
@@ -741,6 +753,10 @@ class AppController {
     this.bookingService.data = this.data;
     this.requestService.data = this.data;
     this.populateDoctorDropdowns();
+    const nameInput = document.getElementById('patient-name-input');
+    if (nameInput) {
+      nameInput.value = this.data.currentPatient?.name || 'Yehia Hassan';
+    }
     this.render();
     this.showToast('All demo slots and appointments reset to initial state.', 'info');
   }
@@ -766,3 +782,4 @@ window.addEventListener('DOMContentLoaded', () => {
   app = new AppController();
   app.init();
 });
+

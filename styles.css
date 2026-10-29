@@ -370,7 +370,7 @@ h2 {
   flex-wrap: wrap;
 }
 
-.select-input {
+.select-input, .text-input {
   background-color: var(--bg-item);
   color: var(--text-primary);
   border: 1px solid var(--border-subtle);
@@ -380,11 +380,25 @@ h2 {
   font-size: 13px;
   font-weight: 500;
   outline: none;
+}
+
+.select-input {
   cursor: pointer;
 }
 
-.select-input:focus {
+.text-input {
+  min-width: 200px;
+}
+
+.select-input:focus, .text-input:focus {
   border-color: #3b82f6;
+}
+
+.patient-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .field-label {
@@ -636,3 +650,4 @@ h2 {
     align-items: flex-start;
   }
 }
+

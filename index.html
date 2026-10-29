@@ -14,7 +14,7 @@
     <!-- Header Section (Styled in Task 1 Flat Dark aesthetic) -->
     <header class="card main-header">
       <div class="header-content">
-        <span class="badge course-badge">Advanced Software Engineering (2026 / 2027)</span>
+        <span class="badge course-badge">Advanced Software Engineering Task 2</span>
         <h1>Doctor Appointment Booking System</h1>
         <p class="ta">Teaching Assistant: <span class="ta-name">Eng. Ahmed Ehab</span></p>
       </div>
@@ -40,11 +40,11 @@
         <div class="nav-tabs">
           <button id="tab-patient" class="tab-btn active" onclick="app.switchView('patient')">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            Patient Portal (R1, R2, R4)
+            Patient Portal
           </button>
           <button id="tab-doctor" class="tab-btn" onclick="app.switchView('doctor')">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            Doctor Portal (R3, R5)
+            Doctor Portal
           </button>
         </div>
         <div class="nav-actions">
@@ -66,27 +66,25 @@
         <!-- Patient Status Card -->
         <div class="card status-card">
           <div class="patient-profile">
-            <div>
-              <p class="subtitle">Logged in as Patient</p>
-              <h2 id="patient-name-display">Yehia Hassan (Patient #101)</h2>
+            <div class="patient-name-wrapper">
+              <label for="patient-name-input" class="field-label">Patient Name:</label>
+              <input type="text" id="patient-name-input" class="text-input" placeholder="Enter patient name..." oninput="app.onPatientNameInput(this.value)">
             </div>
-            <!-- R4 Quota Tracker Badge -->
             <div class="quota-badge-wrapper">
-              <span class="quota-label">Upcoming Limit (R4, N = 3):</span>
               <span id="quota-badge" class="quota-badge quota-ok">0 / 3 Upcoming</span>
             </div>
           </div>
           <div id="quota-alert" class="alert alert-warning" style="display: none;">
-            <strong>Booking Quota Limit Reached:</strong> You already have 3 upcoming appointments (Pending/Accepted). You cannot book more until existing appointments are concluded or cancelled.
+            <strong>Booking Quota Limit Reached:</strong> You already have 3 upcoming appointments. You cannot book more until existing appointments are concluded or cancelled.
           </div>
         </div>
 
         <div class="two-column-grid">
-          <!-- Left Column: Available Doctor Slots (R1, R2, R6) -->
+          <!-- Left Column: Available Doctor Slots -->
           <div class="card">
             <div class="card-header">
               <div>
-                <h2>Available Schedules (R1)</h2>
+                <h2>Available Schedules</h2>
                 <p class="subtitle">Browse doctor availability and book time slots</p>
               </div>
               <div class="filter-group">
@@ -102,28 +100,22 @@
             </div>
           </div>
 
-          <!-- Right Column: Patient's Appointments (R4) -->
+          <!-- Right Column: Patient's Appointments -->
           <div class="card">
             <div class="card-header">
               <div>
-                <h2>My Appointments (R4)</h2>
+                <h2>My Appointments</h2>
                 <p class="subtitle">Track your upcoming and historical bookings</p>
               </div>
             </div>
 
             <div class="appointments-section">
-              <h3 class="section-title">
-                Active Upcoming
-                <span class="info-note">(Future Pending + Accepted count toward N = 3)</span>
-              </h3>
+              <h3 class="section-title">Active Upcoming</h3>
               <div id="patient-upcoming-list" class="appointments-list">
                 <!-- Upcoming list rendered here -->
               </div>
 
-              <h3 class="section-title mt-4">
-                History & Concluded
-                <span class="info-note">(Declined, Cancelled & past slots do not count)</span>
-              </h3>
+              <h3 class="section-title mt-4">History & Concluded</h3>
               <div id="patient-history-list" class="appointments-list">
                 <!-- History list rendered here -->
               </div>
@@ -132,12 +124,12 @@
         </div>
       </section>
 
-      <!-- ================= DOCTOR VIEW (R3, R5) ================= -->
+      <!-- ================= DOCTOR VIEW ================= -->
       <section id="doctor-view" class="view-section">
         <div class="card status-card">
           <div class="doctor-profile">
             <div>
-              <p class="subtitle">Doctor Schedule & Request Management (R3, R5)</p>
+              <p class="subtitle">Doctor Schedule & Request Management</p>
               <h2>Consultation Dashboard</h2>
             </div>
             <div class="doctor-selector-wrapper">
@@ -152,7 +144,7 @@
         <div class="card mt-4">
           <div class="card-header">
             <div>
-              <h2>Pending Appointment Requests (R3)</h2>
+              <h2>Pending Appointment Requests</h2>
               <p class="subtitle">Review patient booking requests to Accept or Decline</p>
             </div>
             <span id="pending-requests-count" class="id">0 Pending</span>
@@ -179,7 +171,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p>Doctor Appointment Booking System &bull; Advanced Software Engineering 2026/2027</p>
+      <p>Doctor Appointment Booking System &bull; Advanced Software Engineering Task 2</p>
       <p class="footer-links">
         <a href="https://github.com/zzokm/Advanced-SWE-Lab-Task-2" target="_blank" rel="noopener">GitHub Repository</a> &bull;
         <a href="requirements.txt" target="_blank">Requirements (R1-R7)</a> &bull;
